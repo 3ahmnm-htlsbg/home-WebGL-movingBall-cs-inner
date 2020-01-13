@@ -9,21 +9,32 @@ public GameObject ball;
 int RandomPos;
 int PosBefore;
 
-public void SetBallRandom() {
+void SetBallRandom() {
+    RandomPos = 0;
 
-ball.transform.position = ballPositions[RandomNumber()].transform.position;
+    PosBefore =4;
 }
-int RandomNumber() {
-RandomPos = Random.Range(0,4);
-while(RandomPos == PosBefore) {
-RandomPos = Random.Range(0,4);
+void SetPosition() {
+ball.transform.position = ballPositions[RandomPos].transform.position;
 }
+
+public void getPosBefore(){
+RandomPos = Random.Range(0,4);
+    if (RandomPos != PosBefore)
+{
 PosBefore = RandomPos;
-return RandomPos;
+SetPosition();
+}
+else {
+    getPosBefore();
+}
+
+}
+
 }
 
 
-}
+
 
     
 
